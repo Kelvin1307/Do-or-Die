@@ -17,6 +17,7 @@ function renderTasks() {
 
         li.innerHTML = `
             <span>${task.text}</span>
+            ${task.deadline ? `<small>Deadline: ${new Date(task.deadline).toLocaleString()}</small>` : ""}
             ${task.proof ? `<img src="${task.proof}" class="proof-thumb">` : ""}
             <div>
                 <button onclick="markComplete(${index})"><i class="fa fa-check"></i></button>
