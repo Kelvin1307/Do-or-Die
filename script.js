@@ -1,3 +1,7 @@
+if (Notification.permission !== "granted") {
+    Notification.requestPermission();
+}
+
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function saveTasks() {
@@ -25,11 +29,13 @@ function renderTasks() {
 
 function addTask() {
     const input = document.getElementById("taskInput");
+    const deadlineInput = document.getElementById("taskDeadline");
     if (input.value.trim() === "") {
         Swal.fire("Oops!", "Please enter a task!", "warning");
         return;
     }
-    tasks.push({ text: input.value, completed: false, proof: null });
+    const deadlineValue = deadlineInput.value ? new Date(deadlineInput.value) : null;
+    tasks.push({ text: input.value, completed: false, proof: null,deadline: deadlineValue });
     input.value = "";
     saveTasks();
     renderTasks();
@@ -84,3 +90,30 @@ setInterval(() => {
 }, 60000); // every 1 min
 
 renderTasks();
+
+setInterval(() => {
+    let now = new Date();
+
+    tasks.forEach(task => {
+        if (!task.deadline || task.completed) return;
+
+        let timeDiff = (task.deadline - now) / 60000; // in minutes
+
+        if (timeDiff <= 60 && timeDiff > 59) {
+            notify(`Task "${task.title}" is due in 1 hour!`);
+        } else if (timeDiff <= 30 && timeDiff > 29) {
+            notify(`Task "${task.title}" is due in 30 minutes!`);
+        } else if (timeDiff <= 15 && timeDiff > 14) {
+            notify(`Task "${task.title}" is due in 15 minutes!`);
+        } else if (timeDiff <= 5 && timeDiff > 4) {
+            notify(`Task "${task.title}" is due in 5 minutes!`);
+        }
+    });
+}, 60000); // check every minute
+
+function notify(message) {
+    if (Notification.permission === "granted") {
+        new Notification(message);
+    }
+}
+
