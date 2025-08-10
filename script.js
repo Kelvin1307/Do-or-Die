@@ -97,9 +97,17 @@ function deleteTask(index) {
             title: "Punishment!",
             text: `You deleted an incomplete task! ${randomPunishment}`,
             icon: "error",
-            confirmButtonText: "I Accept My Fate"
-        });
-    }
+            confirmButtonText: "I Accept My Fate",
+            cancelButtonText: "I'll Complete the Task"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                tasks.splice(index, 1);
+                saveTasks();
+                renderTasks();
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                console.log("User chose to complete the task instead of deleting.");
+            }
+    });
 
     tasks.splice(index, 1);
     saveTasks();
