@@ -18,13 +18,22 @@ function renderTasks() {
         li.innerHTML = `
             <span>${task.text}</span>
             ${task.deadline ? `<small>Deadline: ${new Date(task.deadline).toLocaleString()}</small>` : ""}
-            ${task.proof ? `<img src="${task.proof}" class="proof-thumb">` : ""}
+            ${task.proof ? `<button onclick="viewProof('${task.proof}')">View Proof</button>` : ""}
             <div>
                 <button onclick="markComplete(${index})"><i class="fa fa-check"></i></button>
                 <button onclick="deleteTask(${index})"><i class="fa fa-trash"></i></button>
             </div>
         `;
         list.appendChild(li);
+    });
+}
+
+function viewProof(proofURL) {
+    Swal.fire({
+        title: 'Proof Image',
+        imageUrl: proofURL,
+        imageAlt: 'Proof',
+        confirmButtonText: 'Close'
     });
 }
 
@@ -134,23 +143,4 @@ function notify(message) {
         new Notification(message);
     }
 }
-// ADD HERE: after your renderTasks() function or at the end of script
-document.getElementById('imageUpload').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = document.getElementById('previewImage');
-            img.src = e.target.result;
-            document.getElementById('showImageBtn').style.display = 'inline-block'; // Show button
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-document.getElementById('showImageBtn').addEventListener('click', function() {
-    const img = document.getElementById('previewImage');
-    img.style.display = img.style.display === 'none' ? 'block' : 'none';
-    this.textContent = img.style.display === 'none' ? 'Show Image' : 'Hide Image';
-});
 
