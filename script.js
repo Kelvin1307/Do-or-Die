@@ -144,3 +144,21 @@ function notify(message) {
     }
 }
 
+// Run onboarding tooltip only once
+if (!localStorage.getItem("onboardingShown")) {
+    Swal.fire({
+        title: 'Welcome!',
+        html: `
+            <p>💡 <b>Tip:</b> Complete tasks on time to avoid punishments!</p>
+            <p>📸 You can upload proof for completed tasks and view it anytime.</p>
+            <p>❌ Deleting incomplete tasks will trigger a surprise!</p>
+        `,
+        icon: 'info',
+        confirmButtonText: 'Got it!',
+        backdrop: true,
+        timer: 8000,
+        timerProgressBar: true
+    });
+    localStorage.setItem("onboardingShown", "true");
+}
+
