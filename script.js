@@ -71,40 +71,24 @@ function markComplete(index) {
     fileInput.click();
 }
 
-const punishments = [
-    "Do 10 push-ups right now!",
-    "No snacks for the next 2 hours.",
-    "Write ‘I will not delete tasks’ 10 times.",
-    "Stand up and stretch for 1 minute.",
-    "Sing your favorite song loudly.",
-    "Drink a full glass of water.",
-    "Dance for 30 seconds — yes, right now.",
-    "Text a friend and tell them you’re procrastinating.",
-    "Walk around your room 3 times.",
-    "Read a page from a book before continuing."
-];
-
 function deleteTask(index) {
-    if (index < 0 || index >= tasks.length) return;
+    const punishments = [
+        "⚡ You just lost 10 imaginary karma points!",
+        "💀 A baby dragon cries every time you delete a task.",
+        "⏳ Time wasted is never regained!",
+        "📉 Productivity level decreased by 15%.",
+        "🪦 RIP Task — gone but not forgotten."
+    ];
 
-    // Pick a random punishment
+    // pick a random punishment
     const punishment = punishments[Math.floor(Math.random() * punishments.length)];
+    
+    alert(punishment); // popup punishment
 
-    // Show punishment popup
-    document.getElementById("punishmentText").textContent = punishment;
-    document.getElementById("punishmentModal").style.display = "block";
-
-    // Actually delete the task after showing the punishment
+    // now actually delete
     tasks.splice(index, 1);
-    saveTasks();
     renderTasks();
 }
-
-function closePunishment() {
-    document.getElementById("punishmentModal").style.display = "none";
-}
-
-
 
 // Notifications
 if ("Notification" in window && Notification.permission !== "denied") {
