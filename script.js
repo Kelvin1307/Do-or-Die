@@ -109,12 +109,12 @@ function deleteTask(index) {
                 console.log("User chose to complete the task instead of deleting.");
             }
         });
-        return;
+        
+    } else {
+        tasks.splice(index, 1);
+        saveTasks();
+        renderTasks();
     }
-
-    tasks.splice(index, 1);
-    saveTasks();
-    renderTasks();
 }
 
 
