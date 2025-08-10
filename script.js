@@ -108,7 +108,8 @@ function deleteTask(index) {
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 console.log("User chose to complete the task instead of deleting.");
             }
-    });
+        });
+        return;
     }
 
     tasks.splice(index, 1);
