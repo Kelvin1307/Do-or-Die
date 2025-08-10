@@ -84,11 +84,7 @@ function deleteTask(index) {
 if ("Notification" in window && Notification.permission !== "denied") {
     Notification.requestPermission();
 }
-setInterval(() => {
-    if (tasks.some(t => !t.completed)) {
-        new Notification("Reminder", { body: "You still have tasks to finish!" });
-    }
-}, 60000); // every 1 min
+
 
 renderTasks();
 
