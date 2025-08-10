@@ -80,15 +80,25 @@ function deleteTask(index) {
         "🪦 RIP Task — gone but not forgotten."
     ];
 
-    // pick a random punishment
     const punishment = punishments[Math.floor(Math.random() * punishments.length)];
     
-    alert(punishment); // popup punishment
+    // Show modal
+    const modal = document.getElementById("punishmentModal");
+    const text = document.getElementById("punishmentText");
+    text.textContent = punishment;
+    modal.style.display = "block";
 
-    // now actually delete
-    tasks.splice(index, 1);
-    renderTasks();
+    // Close button
+    document.getElementById("closePunishment").onclick = () => modal.style.display = "none";
+
+    // Confirm delete button
+    document.getElementById("confirmDelete").onclick = () => {
+        tasks.splice(index, 1);
+        renderTasks();
+        modal.style.display = "none";
+    };
 }
+
 
 // Notifications
 if ("Notification" in window && Notification.permission !== "denied") {
