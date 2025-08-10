@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proof Required To-Do List</title>
+    <title>Do or DO IT</title>
     <link rel="stylesheet" href="style.css">
 
     <!-- Libraries -->
@@ -12,16 +12,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
-    <div class="container">
-        <h1>📋 Proof-Required To-Do List</h1>
+    <div class="container animate__animated animate__fadeIn">
+        <h1>📋 Do or DO IT</h1>
         
         <div class="input-area">
             <input type="text" id="taskInput" placeholder="Enter a task...">
             <input type="datetime-local" id="taskDeadline">
-            <button onclick="addTask()">Add Task</button>
+            <button onclick="addTask()" class="animate__animated animate__pulse">
+                <i class="fa fa-plus"></i> Add Task
+            </button>
         </div>
 
-        <ul id="taskList"></ul>
+        <ul id="taskList" class="task-list"></ul>
     </div>
 
     <script src="script.js"></script>
