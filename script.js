@@ -71,14 +71,31 @@ function markComplete(index) {
     fileInput.click();
 }
 
+const punishments = [
+    "Do 10 push-ups right now!",
+    "No snacks for the next 2 hours.",
+    "Write ‘I will not delete tasks’ 10 times.",
+    "Stand up and stretch for 1 minute.",
+    "Sing your favorite song loudly.",
+    "Drink a full glass of water.",
+    "No social media for the next hour.",
+    "Dance for 30 seconds — yes, right now.",
+    "Text a friend and tell them you’re procrastinating.",
+    "Walk around your room 3 times."
+];
+
 function deleteTask(index) {
-    if (!tasks[index].completed) {
-        Swal.fire("Punishment!", "You deleted an incomplete task! Do 20 push-ups!", "error");
-    }
+    if (index < 0 || index >= tasks.length) return;
+
+    // Pick a random punishment
+    const punishment = punishments[Math.floor(Math.random() * punishments.length)];
+    alert(`Punishment for deleting this task: ${punishment}`);
+
     tasks.splice(index, 1);
     saveTasks();
     renderTasks();
 }
+
 
 // Notifications
 if ("Notification" in window && Notification.permission !== "denied") {
