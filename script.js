@@ -97,6 +97,7 @@ function deleteTask(index) {
             title: "Punishment!",
             text: `You deleted an incomplete task! ${randomPunishment}`,
             icon: "error",
+            showCancelButton: true,
             confirmButtonText: "I Accept My Fate",
             cancelButtonText: "I'll Complete the Task"
         }).then((result) => {
