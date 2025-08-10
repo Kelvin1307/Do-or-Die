@@ -72,32 +72,30 @@ function markComplete(index) {
 }
 
 function deleteTask(index) {
-    const punishments = [
-        "⚡ You just lost 10 imaginary karma points!",
-        "💀 A baby dragon cries every time you delete a task.",
-        "⏳ Time wasted is never regained!",
-        "📉 Productivity level decreased by 15%.",
-        "🪦 RIP Task — gone but not forgotten."
+    let punishments = [
+        { title: "Punishment Time!", text: "Do 20 push-ups right now!", icon: "warning" },
+        { title: "Oh no!", text: "Sing your favorite song loudly!", icon: "error" },
+        { title: "Oops!", text: "Dance for 1 minute!", icon: "info" },
+        { title: "Punishment Alert!", text: "Drink a full glass of water immediately!", icon: "warning" },
+        { title: "Challenge!", text: "Send a funny selfie to your friend!", icon: "question" }
     ];
 
-    const punishment = punishments[Math.floor(Math.random() * punishments.length)];
-    
-    // Show modal
-    const modal = document.getElementById("punishmentModal");
-    const text = document.getElementById("punishmentText");
-    text.textContent = punishment;
-    modal.style.display = "block";
+    let chosenPunishment = punishments[Math.floor(Math.random() * punishments.length)];
 
-    // Close button
-    document.getElementById("closePunishment").onclick = () => modal.style.display = "none";
-
-    // Confirm delete button
-    document.getElementById("confirmDelete").onclick = () => {
-        tasks.splice(index, 1);
-        renderTasks();
-        modal.style.display = "none";
-    };
+    Swal.fire({
+        title: chosenPunishment.title,
+        text: chosenPunishment.text,
+        icon: chosenPunishment.icon,
+        confirmButtonText: "Okay, I'll do it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            tasks.splice(index, 1);
+            saveTasks();
+            renderTasks();
+        }
+    });
 }
+
 
 
 // Notifications
