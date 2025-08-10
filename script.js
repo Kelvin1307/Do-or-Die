@@ -73,12 +73,30 @@ function markComplete(index) {
 
 function deleteTask(index) {
     if (!tasks[index].completed) {
-        Swal.fire("Punishment!", "You deleted an incomplete task! Do 20 push-ups!", "error");
+        const punishments = [
+            "Do 10 push-ups!",
+            "Drink a glass of water!",
+            "Dance for 30 seconds!",
+            "Write 'I won't procrastinate' 10 times!",
+            "Send a funny meme to a friend!",
+            "Go outside for a 5-minute walk!"
+        ];
+
+        const randomPunishment = punishments[Math.floor(Math.random() * punishments.length)];
+
+        Swal.fire({
+            title: "Punishment!",
+            text: `You deleted an incomplete task! ${randomPunishment}`,
+            icon: "error",
+            confirmButtonText: "I Accept My Fate"
+        });
     }
+
     tasks.splice(index, 1);
     saveTasks();
     renderTasks();
 }
+
 
 
 
