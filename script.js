@@ -150,13 +150,16 @@ if (!localStorage.getItem("onboardingShown")) {
         title: 'Welcome!',
         html: `
             <p>💡 <b>Tip:</b> Complete tasks on time to avoid punishments!</p>
-            <p>📸 You can upload proof for completed tasks and view it anytime.</p>
-            <p>❌ Deleting incomplete tasks will trigger a surprise!</p>
+            <p>1. Enter a task.</p>
+            <p>2. Set deadline.</p>
+            <p>3. Complete it before deadline.</p>
+            <p>📸 You should upload proof for completed tasks and it can be viewed anytime.</p>
+            <p>❌ Deleting incomplete tasks will trigger the Punishment!</p>
         `,
         icon: 'info',
         confirmButtonText: 'Got it!',
         backdrop: true,
-        timer: 8000,
+        timer: 50000,
         timerProgressBar: true
     });
     localStorage.setItem("onboardingShown", "true");
