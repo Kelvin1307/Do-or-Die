@@ -3,29 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Do or DO IT</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Do or Die — your accountability task manager. Add tasks, set deadlines, and prove you did them.">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Do or Die 💀 — Task Manager</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Libraries -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container animate__animated animate__fadeIn">
-        <h1>📋 Do or DO IT</h1>
-        
-        <div class="input-area">
-            <input type="text" id="taskInput" placeholder="Enter a task...">
-            <input type="datetime-local" id="taskDeadline">
-            <button onclick="addTask()" class="animate__animated animate__pulse">
+    <div class="container">
+        <h1>💀 Do or Die</h1>
+
+        <div class="input-area" id="inputArea">
+            <input type="text" id="taskInput" placeholder="What needs to be done?" autocomplete="off">
+            <input type="datetime-local" id="taskDeadline" title="Set deadline">
+            <button id="addTaskBtn" onclick="addTask()">
                 <i class="fa fa-plus"></i> Add Task
             </button>
         </div>
 
+        <div class="section-label">
+            <i class="fa fa-list-check" style="color: var(--neon-purple); font-size: 0.8rem;"></i>
+            Your Tasks
+        </div>
+
         <ul id="taskList" class="task-list"></ul>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
